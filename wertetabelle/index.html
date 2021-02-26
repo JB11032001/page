@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Wertetabelle einer linearen Kostenfunktion</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script>
+			"use strict";
+
+			function fRechnung() {
+				
+			var vStartwert=document.getElementById("idStartwert").value; 
+			var vEndwert=document.getElementById("idEndwert").value;
+			var vVKosten=document.getElementById("idVKosten").value;
+			var vFKosten=document.getElementById("idFKosten").value; 
+			var vSchritt=document.getElementById("idSchrittweite").value;
+			var vEndKosten;
+			var vAusgabe;
+			
+								
+			vAusgabe = " ";
+			vAusgabe = vAusgabe + "<table border = 1>";
+			vAusgabe = vAusgabe + "<tr><th>x</th><th>K(x)</th></tr>";	
+			
+			    while (parseFloat(vStartwert) <= parseFloat(vEndwert)) {
+			
+			        vEndKosten = (vVKosten * vStartwert) + parseFloat(vFKosten);
+				
+			        vAusgabe = vAusgabe + "<tr><td>" + vStartwert + "</td><td>" + vEndKosten + "</td></tr>";
+			
+			        vStartwert = parseFloat(vStartwert) + parseFloat(vSchritt);
+			    }
+				
+			vAusgabe = vAusgabe + "</table>";	
+				
+			document.getElementById("idAusgabe").innerHTML=vAusgabe;	
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>Wertetabelle einer linearen Kostenfunktion</h1>
+				
+		Startwert:<input id="idStartwert" type="text" value="-10"><br/>
+		Endwert:<input id="idEndwert" type="text" value="10"><br/>
+		Variable Kosten:<input id="idVKosten" type="text" value="2"><br/>
+		Fixe Kosten:<input id="idFKosten" type="text" value="20"><br/>
+		Schrittweite:<input id="idSchrittweite" type="text" value="2"><br/><br/>
+		
+		<button onclick="fRechnung();">Erstelle die Wertetabelle einer linearen Kostenfunktion</button><br/><br/>
+		<div id="idAusgabe">Hier kommt beim Klicken auf den Button eine Wertetabelle.</div>
+		
+	</body>
+</html>
