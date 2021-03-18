@@ -19,7 +19,7 @@
 			var vZinsSumme = "";
 				
 			vAusgabe = vAusgabe + "<table border=1>";
-			vAusgabe = vAusgabe + "<tr><th>" + "Jahr" + "</th><th>" + "Jahresstartkapital (01.01)" + "</th><th>" + "Zinsen (31.12)" + "</th><th>" + "Jahresendkapital (31.12)" + "</th></tr>";
+			vAusgabe = vAusgabe + "<tr><th>" + "Jahr" + "</th><th>" + "Kapital am 1.1." + "</th><th>" + "Zinsen am 31.12." + "</th><th>" + "Kapital am 31.12." + "</th></tr>";
 				
 				while (vStart <= vStop) {
 				
@@ -37,9 +37,7 @@
 				}	
 								
 			vAusgabe = vAusgabe + "</table>";
-				
-			vAusgabe = vAusgabe + "<p>" + "Gesamtzinsen nach Laufzeit: " + vZinsSumme.toFixed(2) + " €"
-				
+					
 			document.getElementById("idAusgabe").innerHTML = vAusgabe;	
 				
 			}
