@@ -1,62 +1,63 @@
 <html>
-     <head>
-     <title>Zinseszinsrechner</title>
-     <meta http-equiv="Conten-Type" content="text/html; charset=utf-8">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>ZinsesZins-Rechner</title>
+		
+		
+		<script>
+			"use strict";
+			
+			function fRechner () {
+				
+			var vStartkapital = parseFloat(document.getElementById("idStartkapital").value);
+			var vStart = 0;
+			var vStop = document.getElementById("idLaufzeit").value; 
+			var vZinssatz = document.getElementById("idZinssatz").value; 
+			var vZinsen;
+			var vEndkapital;
+			var vAusgabe = "";
+			var vZinsSumme = "";
+				
+			vAusgabe = vAusgabe + "<table border=1>";
+			vAusgabe = vAusgabe + "<tr><th>" + "Jahr" + "</th><th>" + "Jahresstartkapital (01.01)" + "</th><th>" + "Zinsen (31.12)" + "</th><th>" + "Jahresendkapital (31.12)" + "</th></tr>";
+				
+				while (vStart <= vStop) {
+				
+				vZinsen =  parseFloat(vStartkapital) /100 *  parseFloat(vZinssatz);
+				vEndkapital = vStartkapital + vZinsen;
+				
+				vAusgabe = vAusgabe + "<tr><td>" + vStart + "</td><td>" + vStartkapital.toFixed(2) + " €</td><td>" + vZinsen.toFixed(2) + " €</td><td>" + vEndkapital.toFixed(2) + " €</td></tr>";
+					
+				vStartkapital =  parseFloat(vStartkapital) +  parseFloat(vZinsen);
+					
+				vZinsSumme = parseFloat(vZinsSumme + vZinsen);
+					
+				vStart = vStart + 1;		   
+					   
+				}	
+								
+			vAusgabe = vAusgabe + "</table>";
+				
+			vAusgabe = vAusgabe + "<p>" + "Gesamtzinsen nach Laufzeit: " + vZinsSumme.toFixed(2) + " €"
+				
+			document.getElementById("idAusgabe").innerHTML = vAusgabe;	
+				
+			}
+			
+		</script>
+	</head>
 
-     <script>
-          "use strict";
-     
-          function fEuro(number) {
-               return number;
-          }
-          
-          
-          function fRechner() {
-               var vZinssatz = parseFloat(document.getElementById("idZinssatz").value);
-               var vStartkapital = parseFloat(document.getElementById("idStartkapital").value);
-               var vLaufzeit = parseFloat(document.getElementById("idLaufzeit").value);
-               
-               var vZinsfaktor = 1 + vZinssatz / 100;
-               var vEndkapital = vStartkapital * Math.pow(vZinsfaktor, vLaufzeit);
-               
-               var vZinsen;
-               var vKapitalJahresEnde;
-               
-               var vJahr = 0;
-               var vKapitalJahresAnfang = vStartkapital;
-
-               var vAusgabe = "";
-               vAusgabe = vAusgabe + "Das Endkapital beträgt " + fEuro(vEndkapital) + ".<br><br>";
-               
-               vAusgabe = vAusgabe + "<table border=1>";
-               vAusgabe = vAusgabe + "<tr><th>Jahr</th><th>Kapital am 1.1.</th><th>Zinsen am 31.12.</th><th>Kapital am 31.12.</th></tr>";
-
-               while (vJahr <= vLaufzeit) {
-                    vZinsen = vKapitalJahresAnfang * (vZinssatz / 100);
-                    vKapitalJahresEnde = vKapitalJahresAnfang + vZinsen;
-                    vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + vKapitalJahresAnfang.toFixed(2) + "</td><td>" + vZinsen.toFixed(2) + "</td><td>" + vKapitalJahresEnde.toFixed(2) + "</td></tr>";
-
-                    vKapitalJahresAnfang = vKapitalJahresEnde;
-                    vJahr++;
-               }
-
-               vAusgabe = vAusgabe + "</table>";
-               document.getElementById("idAusgabe").innerHTML = vAusgabe;
-          } 
-          </script>
-    </head>
-
-
-    <body>
-    <h1>Zinseszinsrechner</h1>
-
-    Zinssatz: <input id="idZinssatz" type="text" value="2">%<br>
-    Startkapital: <input id="idStartkapital" type="text" value="1000">€<br>
-    Laufzeit: <input id="idLaufzeit" type="text" value="5"> Jahre<br><br>
-
-    <button onClick="fRechner()">Berechnen</button><br><br>
-
-    <div id="idAusgabe">Klicken Sie auf den Button Berechnen, damit hier eine Tabelle erscheint...</div>
-
-    </body>
+	<body>
+		<h1>ZinsesZins-Rechner</h1>
+	
+		Startkapital: <input id="idStartkapital" type="text" value="1000"> € <br>		
+		Zinssatz: <input id="idZinssatz" type="text" value="2"> % <br>
+		Laufzeit: <input id="idLaufzeit" type="text" value="6"> Jahre<p>
+		
+		<button onClick="fRechner();">Zinsen berechnen</button>
+		
+		<div id="idAusgabe"> </div>
+		
+		
+	</body>
 </html>
