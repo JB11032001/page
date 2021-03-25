@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Rentenendwertrechner</title>
+		
+		
+		<script>
+			"use strict";
+			
+			function fRechner () {
+				
+			var vStartkapital = 0;	
+			var vRente = parseFloat(document.getElementById("idRente").value);
+			var vStart = 0;
+			var vStop = document.getElementById("idLaufzeit").value; 
+			var vZinssatz = document.getElementById("idZinssatz").value; 
+			var vZinsen; 
+			var vEndkapital;
+			var vAusgabe = "";
+				
+			vAusgabe = vAusgabe + "<table border=1>";
+			vAusgabe = vAusgabe + "<tr><th>" + "Jahr" + "</th><th>" + "Kapital am 01.01" + "</th><th>" + "Zinsen am 31.12" + "</th><th>" + "Rente am 31.12" + "</th><th>" + "Kapital am 31.12" + "</th></tr>";
+				
+				while (vStart <= vStop) {
+				
+				
+				vZinsen =  parseFloat(vStartkapital) /100 *  parseFloat(vZinssatz);
+				vEndkapital = vStartkapital + vZinsen + vRente;
+				
+					if (vStart == vStop){
+						vAusgabe = vAusgabe + "<tr><td>" + vStart + "</td><td>" + vStartkapital.toFixed(2) + " €</td>";
+						
+					} else 	{
+						vAusgabe = vAusgabe + "<tr><td>" + vStart + "</td><td>" + vStartkapital.toFixed(2) + " €</td><td>" + vZinsen.toFixed(2) + " €</td><td>" + vRente.toFixed(2) + " €</td><td>" + vEndkapital.toFixed(2) + " €</td></tr>";
+						
+					}
+					
+				vStartkapital =  vEndkapital;
+					
+				vStart = vStart + 1;		   
+					   
+				}	
+								
+			vAusgabe = vAusgabe + "</table>";
+				
+			document.getElementById("idAusgabe").innerHTML = vAusgabe;	
+				
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>Nachschüssiger Rentenendwertrechner</h1>
+		
+		
+		Zinssatz: <input id="idZinssatz" type="text" value="2"> % <br>
+		Nachschüssige Rente: <input id="idRente" type="text" value="100"> € <br>	
+		Laufzeit: <input id="idLaufzeit" type="text" value="5"> Jahre<p>
+		
+		<button onClick="fRechner();">Berechnen</button>
+		
+		<div id="idAusgabe">Klicken Sie auf den Button Berechnen, damit hier eine Tabelle erscheint... </div>
+		
+	</body>
+</html>
